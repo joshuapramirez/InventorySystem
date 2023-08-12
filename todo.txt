@@ -1,0 +1,42 @@
+fix the CSS on login page.
+
+Move the URLs to other urls.py in inventory folder
+
+
+
+
+Add 'are you sure' pop-up to after user tries to delete form.
+
+-maybe (hard?) have update form pop-up and update w/o refreshing
+
+------------------for sure change variable names in functions, urls, etc.
+
+
+
+
+
+
+8/9/23
+Ok let's just keep the modal being cloned just because
+We have to figure out how to keep the button from disappearing.
+Got to apply the changes to the Sales Value as well....
+
+
+THEN, i guess using fetch?  have the values actually update in Model.
+
+
+
+8/10/23
+Fix the buttons from disappearing after the submit.
+
+Work on the functionality of the other button to add stock, should be way easier.
+
+Change variable names of some of the stuff??  Whereever I can just to change it up a bit
+
+--Be able to type into the form immediately, and press enter from my keyboard (shouldn't be hard)
+
+
+
+Change CSS for table and also background theme/color
+
+Add javascript to confirm if user wants to delete an inventory

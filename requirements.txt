@@ -1,0 +1,39 @@
+python3 -m venv project_env
+
+windows:
+project_env\Scripts\activate
+Gitbash:
+source project_env/Scripts/activate
+
+macOS and Linux:
+source project_env/bin/activate
+
+
+
+python3 -m pip install Django
+
+Notes:
+django-admin startproject inventorySystem
+
+
+python3 manage.py migrate
+
+python3 manage.py createsuperuser
+
+python3 manage.py startapp inventory
+
+python3 manage.py makemigrations
+
+python3 manage.py migrate
+
+pip install django-crispy-forms
+
+pip install plotly==5.15.0
+
+
+
+pip install numpy
+
+pip install pandas
+
+pip install django-pandas
