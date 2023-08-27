@@ -1,11 +1,12 @@
 {% extends "inventory/layout.html" %}
 
 
+
 {% block content %}
 <div class="content-section">
     <div class="row mx-auto justify-content-center">
 
-        <div class="card m-4" style="width: 18rem;">
+        <div class="card m-4" style="width: 18rem; background-color: #EAEAEA; border: 1px solid #CCC; border-radius: 10px;">
             <div class="card-body">
                 <h5 class="card-title text-center">Product Name</h5>
                 <div style="font-size: 30px;" class="text-center">
@@ -15,7 +16,7 @@
             </div>
         </div>
 
-        <div class="card m-4" style="width: 18rem;">
+        <div class="card m-4" style="width: 18rem; background-color: #EAEAEA; border: 1px solid #CCC; border-radius: 10px;">
             <div class="card-body">
                 <h5 class="card-title text-center">Quantity In Stock</h5>
                 <div style="font-size: 30px;" class="text-center">
@@ -25,7 +26,7 @@
             </div>
         </div>
 
-        <div class="card m-4" style="width: 18rem;">
+        <div class="card m-4" style="width: 18rem; background-color: #EAEAEA; border: 1px solid #CCC; border-radius: 10px;">
             <div class="card-body">
                 <h5 class="card-title text-center">Quantity Sold</h5>
                 <div style="font-size: 30px;" class="text-center">
@@ -35,29 +36,29 @@
             </div>
         </div>
 
-        <div class="card m-4" style="width: 18rem;">
+        <div class="card m-4" style="width: 18rem; background-color: #EAEAEA; border: 1px solid #CCC; border-radius: 10px;">
             <div class="card-body">
                 <h5 class="card-title text-center">Price Per {{ inventory.name }}</h5>
                 <div style="font-size: 30px;" class="text-center">
                     <span><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <h3 class="text-center">{{ product.cost_per_item }}</h3>
+                <h3 class="text-center">${{ product.cost_per_item }}</h3>
             </div>
         </div>
 
-        <div class="card m-4" style="width: 18rem;">
+        <div class="card m-4" style="width: 18rem; background-color: #EAEAEA; border: 1px solid #CCC; border-radius: 10px;">
             <div class="card-body">
                 <h5 class="card-title text-center">Total Sales</h5>
                 <div style="font-size: 30px;" class="text-center">
                     <span><i class="fas fa-dollar-sign"></i></span>
                 </div>
-                <h3 class="text-center">{{ product.sales }}</h3>
+                <h3 class="text-center">${{ product.sales }}</h3>
             </div>
         </div>
 
-        <div class="card m-4" style="width: 18rem;">
+        <div class="card m-4" style="width: 18rem; background-color: #EAEAEA; border: 1px solid #CCC; border-radius: 10px;">
             <div class="card-body">
-                <h5 class="card-title text-center">Stock Date</h5>
+                <h5 class="card-title text-center">Date Created</h5>
                 <div style="font-size: 30px;" class="text-center">
                     <span><i class="fas fa-calendar-alt"></i></span>
                 </div>
@@ -65,7 +66,7 @@
             </div>
         </div>
 
-        <div class="card m-4" style="width: 18rem;">
+        <div class="card m-4" style="width: 18rem; background-color: #EAEAEA; border: 1px solid #CCC; border-radius: 10px;">
             <div class="card-body">
                 <h5 class="card-title text-center">Last Sales Date</h5>
                 <div style="font-size: 30px;" class="text-center">
@@ -76,9 +77,25 @@
         </div>
 
         <a class="btn btn-success btn-sm mb-3" href="{% url 'update_inventory' product.id %}">Update Inventory</a>
-        <a class="btn btn-danger btn-sm" href="{% url 'delete_inventory' product.id %}">Delete Inventory</a>
+        <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="openDeleteModal('{{ product.id }}')">Delete Inventory</a>
 
-    </div>
-</div>
+        <!-- Modal HTML/CSS Code -->
+        <div id="id01" class="modal">
+            <div class="modal-content">
+                <span onclick="closeDeleteModal()" class="close" title="Close Modal">&times;</span>
+                <div class="content-container">
+                    <div class="container centered">
+                        <h1>Delete Inventory Item</h1>
+                        <p>Are you sure you want to delete this inventory item?</p>
+
+                        <div>
+                            <button type="button" onclick="deleteInventory('{{ product.id }}')" class="deletebtn modal-btn">Delete</button>
+                            <button type="button" onclick="closeDeleteModal()" class="cancelbtn modal-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 {% endblock %}

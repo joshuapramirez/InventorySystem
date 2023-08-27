@@ -1,0 +1,11 @@
+{% extends "inventory/layout.html" %}
+
+{% block content %}
+<div class="content-section">
+    <div class="text-center">
+        <h2>You currently have 0 products.</h2>
+        <p>Add a new product to your inventory.</p>
+        <a href="{% url 'add_inventory' %}" class="btn btn-primary">Add Product</a>
+    </div>
+</div>
+{% endblock %}

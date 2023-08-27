@@ -1,20 +1,36 @@
 {% extends "inventory/layout.html" %}
 
-{% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
-<div class="content-section">
-    {{ form.media }}
-    <form method="POST">
+<div class="content-section d-flex justify-content-center align-items-center">
+    <form method="POST" class="p-4 shadow rounded-lg" style="background-color: #EAEAEA; width: 650px; border: 1px solid #CCC; border-radius: 10px;">
         <fieldset>
-            <legend class="border-bottom pd-2 mb-4 text-center">Add Inventory Form</legend>
+            <legend class="border-bottom pb-2 mb-4 text-center fs-4" style="color: #333;">Add Product Form</legend>
             {% csrf_token %}
-            <div class="form-group">
-                {{ form }}
+
+            <div class="mb-3">
+                <label for="{{ form.name.id_for_label }}" class="form-label h5">Product Name</label>
+                {{ form.name }}
             </div>
-            <div class="form-group pt-4">
-                <button class="btn btn-outline-success" type="submit">Add Inventory</button>
+
+            <div class="mb-3">
+                <label for="{{ form.cost_per_item.id_for_label }}" class="form-label h5">Cost per Item</label>
+                {{ form.cost_per_item }}
+            </div>
+
+            <div class="mb-3">
+                <label for="{{ form.quantity_in_stock.id_for_label }}" class="form-label h5">Quantity in Stock</label>
+                {{ form.quantity_in_stock }}
+            </div>
+
+            <div class="mb-3">
+                <label for="{{ form.quantity_sold.id_for_label }}" class="form-label h5">Quantity Sold</label>
+                {{ form.quantity_sold }}
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" type="submit">Add to Inventory</button>
             </div>
         </fieldset>
     </form>

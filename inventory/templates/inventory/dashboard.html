@@ -1,41 +1,55 @@
 {% extends "inventory/layout.html" %}
 
-
 {% block content %}
+
 <div class="content-section">
-    <div class="row mx-auto justify-content-center">
+  <div class="row mx-auto justify-content-center">
 
-        <div class="card m-4" style="width: 90%;">
-            <div class="card-body">
-                <div id="chart1"></div>
-            </div>
-        </div>
-
-        <div class="card m-4" style="width: 90%;">
-            <div class="card-body">
-                <div id="chart2"></div>
-            </div>
-        </div>
-
-        <div class="card m-4" style="width: 90%;">
-            <div class="card-body">
-                <div id="chart3"></div>
-            </div>
-        </div>
-
+    <div class="card m-4" style="width: 90%;">
+      <div class="card-body">
+        <div class="chart-container" id="chart1"></div>
+      </div>
     </div>
+
+    <div class="card m-4" style="width: 90%;">
+      <div class="card-body">
+        <div class="chart-container" id="chart2"></div>
+      </div>
+    </div>
+
+    <div class="card m-4" style="width: 90%;">
+      <div class="card-body">
+        <div class="chart-container" id="chart3"></div>
+      </div>
+    </div>
+
+    <div class="card m-4" style="width: 90%;">
+      <div class="card-body">
+        <div class="chart-container" id="chart4"></div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script type="text/javascript">
-    var graph1 = {{ sales_graph| safe }}
-    Plotly.plot("chart1", graph1, {})
+  function createPlotlyChart(containerId, graphData) {
+    Plotly.newPlot(containerId, graphData, {});
+  }
 
-    var graph2 = {{ best_performing_product| safe }}
-    Plotly.plot("chart2", graph2, {})
+  // Initial chart creation
+  createPlotlyChart("chart1", {{ daily_product_sales_graph| safe }});
+  createPlotlyChart("chart2", {{ highest_sales_graph| safe }});
+  createPlotlyChart("chart3", {{ most_sold_products| safe }});
+  createPlotlyChart("chart4", {{ most_product_in_stock| safe }});
 
-    var graph3 = {{ most_product_in_stock| safe }}
-    Plotly.plot("chart3", graph3, {})
+  // Attach window resize event listener to adjust chart size
+  window.addEventListener("resize", function() {
+    createPlotlyChart("chart1", {{ daily_product_sales_graph| safe }});
+    createPlotlyChart("chart2", {{ highest_sales_graph| safe }});
+    createPlotlyChart("chart3", {{ most_sold_products| safe }});
+    createPlotlyChart("chart4", {{ most_product_in_stock| safe }});
+  });
 </script>
-
 {% endblock %}

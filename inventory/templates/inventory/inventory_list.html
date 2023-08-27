@@ -2,285 +2,61 @@
 
 {% block content %}
 <div class="content-section">
-    <table class="table table-striped table-bordered table-hovet">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Quantity In Stock</th>
-                <th scope="col">Quantity Sold</th>
-                <th scope="col">Cost Per Item</th>
-                <th scope="col">Sales or Revenue</th>
-                <th scope="col">Date Created</th>
-                <th scope="col">Last Sales Date</th>
-            </tr>
-        </thead>
-        <tbody id="inventory-table-body">
-            {% for inventory in all_products %}
-                <tr data-product-id="{{ inventory.pk }}" style="cursor: pointer;">
-                    <th scope="col">{{ forloop.counter }}</th>
-                    <th scope="col">{{ inventory.name }}</th>
-                    <th scope="col">
-                        <span id="quantity-in-stock-{{inventory.pk}}">{{ inventory.quantity_in_stock }}</span>
-                        <button class="add-stock-button" data-product-id="{{ inventory.pk }}">
-                            <i class="fas fa-plus-circle add-stock-icon" data-product-id="{{ inventory.pk }}"></i> <!-- Font Awesome icon for Add Stock -->
-                        </button>
-                        <!-- Add Stock Form -->
-                        <div class="add-form" id="add-stock-form-{{ inventory.pk }}" style="display: none;">
-                            <input type="number" id="add-stock-input-{{ inventory.pk }}" min="0" step="1" value="0" autofocus>
-                            <button class="confirm-stock-button " data-product-id="{{ inventory.pk }}" onclick="confirmStock(event, {{ inventory.pk }})">
-                                Add
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hovet">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity In Stock</th>
+                    <th scope="col">Quantity Sold</th>
+                    <th scope="col">Cost Per Item</th>
+                    <th scope="col">Sales or Revenue</th>
+                    <th scope="col">Last Sales Date</th>
+                </tr>
+            </thead>
+            <tbody id="inventory-table-body">
+                {% for inventory in all_products %}
+                    <tr data-product-id="{{ inventory.pk }}" style="cursor: pointer;">
+                        <th scope="col" class="cell" data-label="#">{{ forloop.counter }}</th>
+                        <th scope="col" class="cell" data-label="Name">{{ inventory.name }}</th>
+                        <th scope="col" class="cell" data-label="Quantitiy In Stock">
+                            <span id="quantity-in-stock-{{inventory.pk}}">{{ inventory.quantity_in_stock }}</span>
+                            <button class="add-stock-button" data-product-id="{{ inventory.pk }}" >
+                                <i class="fas fa-plus-circle add-stock-icon" data-product-id="{{ inventory.pk }}"></i> <!-- Font Awesome icon for Add Stock -->
                             </button>
-                        </div>
-                    </th>
-                    <th scope="col">
-                        <span id="quantity-sold-{{inventory.pk}}">{{ inventory.quantity_sold }}</span>
-                        <button class="add-sale-button" data-product-id="{{ inventory.pk }}">
-                            <i class="fas fa-plus-circle add-sale-icon" data-product-id="{{ inventory.pk }}"></i> <!-- Font Awesome icon for Add Sale -->
-                        </button>
-                        <!-- Sale Form -->
-                            <div class="add-form" id="add-sale-form-{{ inventory.pk }}" style="display: none;">
-                                <input type="number" id="add-sale-input-{{ inventory.pk }}" min="0" step="1" value="0" autofocus>
-                                <button class="confirm-sale-button " data-product-id="{{ inventory.pk }}" onclick="confirmSale(event, {{ inventory.pk }})">
+                            <!-- Add Stock Form -->
+                            <div class="add-form" id="add-stock-form-{{ inventory.pk }}" style="display: none;">
+                                <input type="number" id="add-stock-input-{{ inventory.pk }}" min="0" step="1" vancliclue="0" autofocus>
+                                <button class="confirm-stock-button" data-product-id="{{ inventory.pk }}" onclick="confirmStock(event, {{ inventory.pk }})">
                                     Add
                                 </button>
                             </div>
-                    </th>
-                    <th scope="col">{{ inventory.cost_per_item }}</th>
-                    <th scope="col">
-                        <span id="sales-{{inventory.pk}}">{{ inventory.sales }}</span>
-                    </th>
-                    <th scope="col">{{ inventory.stock_date }}</th>
-                    <th scope="col">{{ inventory.last_sales_date }}</th>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                        </th>
+                        <th scope="col" class="cell" data-label="Quantity Sold">
+                            <span id="quantity-sold-{{inventory.pk}}">{{ inventory.quantity_sold }}</span>
+                            <button class="add-sale-button" data-product-id="{{ inventory.pk }}">
+                                <i class="fas fa-plus-circle add-sale-icon" data-product-id="{{ inventory.pk }}"></i> <!-- Font Awesome icon for Add Sale -->
+                            </button>
+                            <!-- Sale Form -->
+                                <div class="add-form" id="add-sale-form-{{ inventory.pk }}" style="display: none;">
+                                    <input type="number" id="add-sale-input-{{ inventory.pk }}" min="0" step="1" value="0" autofocus>
+                                    <button class="confirm-sale-button " data-product-id="{{ inventory.pk }}" onclick="confirmSale(event, {{ inventory.pk }})">
+                                        Add
+                                    </button>
+                                </div>
+                        </th>
+                        <th scope="col" class="cell" data-label="Cost Per Item">${{ inventory.cost_per_item }}</th>
+                        <th scope="col" class="cell" data-label="Sales or Revenue">
+                            <span id="sales-{{inventory.pk}}">${{ inventory.sales }}</span>
+                        </th>
+                        <th scope="col" class="cell" data-label="Last Sales Date">{{ inventory.formatted_last_sales_date }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<style>
-    .modal-container {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 9999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-    .add-form {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        max-width: 400px;
-        width: 80%;
-    }
-</style>
-
-<script>
-    function getCookie(name){
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if(parts.length == 2) return parts.pop().split(';').shift();
-    }
-
-    function closeModal(event) {
-        const isModalContainer = event.target.id === 'modal-container';
-        const isConfirmButton = event.target.classList.contains('confirm-sale-button') || event.target.classList.contains('confirm-stock-button');
-
-        if (isModalContainer || isConfirmButton) {
-            const modalContainer = document.querySelector('.modal-container');
-            modalContainer.style.display = 'none'; // Hide the modal
-            console.log("Close Modal", event);
-        }
-    }
-
-
-    function confirmSale(event, id) {
-        event.stopPropagation();
-        const addSaleInput = document.getElementById(`add-sale-input-modal-${id}`);
-        const quantitySoldDiv = document.getElementById(`quantity-sold-${id}`);
-        const salesDiv = document.getElementById(`sales-${id}`);
-        const stockDiv = document.getElementById(`quantity-in-stock-${id}`);
-        const confirmButton = event.target;
-
-        const saleQuantity = parseInt(addSaleInput.value, 10);
-        const currentQuantitySold = parseInt(quantitySoldDiv.textContent, 10);
-        const currentSales = parseFloat(salesDiv.textContent);
-        const currentStock = parseInt(stockDiv.textContent, 10);
-
-        console.log("Sale quantity:", saleQuantity);
-        console.log("Current stock:", currentStock);
-
-        if (!isNaN(saleQuantity) && saleQuantity >= 0 && saleQuantity <= currentStock) {
-            // Make a fetch request to update the inventory
-            fetch(`/inventory/confirm_sale/${id}`, {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json",
-                    "X-CSRFToken": getCookie("csrftoken"),
-                },
-                body: JSON.stringify({
-                    sale_quantity: saleQuantity,
-                }),
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log("Result:", result);
-                console.log("Quantity Sold:", result.quantity_sold);
-                console.log("New Sales:", result.sales);
-                console.log("New Quantity in Stock:", result.quantity_in_stock);
-
-
-
-                if (result.success) {
-                    // Update the values in the DOM
-                    quantitySoldDiv.textContent = result.quantity_sold;
-                    salesDiv.textContent = result.sales;
-                    stockDiv.textContent = result.quantity_in_stock;
-                } else {
-                    console.error("Failed to update inventory:", result.message);
-                }
-            })
-            .catch(error => {
-                console.error("Fetch error:", error);
-            });
-        }
-
-        closeModal(event);
-    }
-
-    function confirmStock(event, id) {
-        event.stopPropagation();
-        const addStockInput = document.getElementById(`add-stock-input-modal-${id}`);
-        const stockDiv = document.getElementById(`quantity-in-stock-${id}`);
-        const confirmButton = event.target;
-
-        const addStockQuantity = parseInt(addStockInput.value, 10);
-        const currentStock = parseInt(stockDiv.textContent, 10);
-
-        if (!isNaN(addStockQuantity)) {
-            // Make a fetch request to update the inventory
-            fetch(`/inventory/confirm_stock/${id}`, {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json",
-                    "X-CSRFToken": getCookie("csrftoken"),
-                },
-                body: JSON.stringify({
-                    add_stock_quantity: addStockQuantity,
-                }),
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log("Result:", result);
-                console.log("New Quantity in Stock:", result.updated_quantity_in_stock);
-
-                if (result.success) {
-                    // Update the values in the DOM
-                    stockDiv.textContent = result.updated_quantity_in_stock;
-                } else {
-                    console.error("Failed to update inventory:", result.message);
-                }
-            })
-            .catch(error => {
-                console.error("Fetch error:", error);
-            });
-        }
-
-        closeModal(event);
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        function addStock(event, id) {
-            event.stopPropagation(); // Prevent the click event from bubbling up
-            console.log("Add stock for product ID:", id);
-            showAddStockForm(id);
-        }
-
-        function addSale(event, id) {
-            event.stopPropagation(); // Prevent the click event from bubbling up
-            console.log("Add sale for product ID:", id);
-            showAddSaleForm(id); // Call this function to show the "Add Sale" form when the "Add Sale" button is clicked
-        }
-
-        function redirectToProduct(id) {
-            console.log("Navigate to per_product page for product ID:", id);
-            const url = `/inventory/per_product/${id}`;
-            window.location.href = url;
-        }
-
-        function showAddSaleForm(id) {
-            const existingModal = document.getElementById('modal-container');
-            if (existingModal) {
-                document.body.removeChild(existingModal);
-            }
-
-            const modalContainer = document.createElement('div');
-            modalContainer.classList.add('modal-container');
-            modalContainer.setAttribute('id', 'modal-container');
-
-            const addSaleForm = document.getElementById(`add-sale-form-${id}`).cloneNode(true);
-            const clonedAddSaleInput = addSaleForm.querySelector('input');
-            clonedAddSaleInput.setAttribute('id', `add-sale-input-modal-${id}`);
-            addSaleForm.style.display = 'block';
-
-            modalContainer.appendChild(addSaleForm);
-            document.body.appendChild(modalContainer);
-            modalContainer.addEventListener('click', closeModal);
-
-            console.log("Open sale form for product ID:", id);
-        }
-
-        function showAddStockForm(id) {
-            const existingModal = document.getElementById('modal-container');
-            if (existingModal) {
-                document.body.removeChild(existingModal);
-            }
-
-            const modalContainer = document.createElement('div');
-            modalContainer.classList.add('modal-container');
-            modalContainer.setAttribute('id', 'modal-container');
-
-            const addStockForm = document.getElementById(`add-stock-form-${id}`).cloneNode(true);
-            const clonedAddStockInput = addStockForm.querySelector('input');
-            clonedAddStockInput.setAttribute('id', `add-stock-input-modal-${id}`);
-            addStockForm.style.display = 'block';
-
-            modalContainer.appendChild(addStockForm);
-            document.body.appendChild(modalContainer);
-            modalContainer.addEventListener('click', closeModal);
-
-            console.log("Open stock form for product ID:", id);
-        }
-
-
-        document.getElementById("inventory-table-body").addEventListener("click", function(event) {
-            const target = event.target;
-
-            // Handle button and icon clicks
-            if (target.matches(".add-stock-button, .add-sale-button, .add-stock-icon, .add-sale-icon")) {
-                const productId = target.getAttribute("data-product-id");
-                if (target.matches(".add-stock-button, .add-stock-icon")) {
-                    addStock(event, productId);
-                } else if (target.matches(".add-sale-button, .add-sale-icon")) {
-                    addSale(event, productId);
-                }
-                return;
-            }
-
-            const tr = target.closest("tr");
-            if (tr) {
-                const productId = tr.getAttribute("data-product-id");
-                redirectToProduct(productId);
-            }
-        });
-    });
-</script>
 {% endblock %}
