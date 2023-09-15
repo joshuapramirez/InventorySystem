@@ -6,8 +6,8 @@ Inventory Management System for Businesses/Sellers
 - [Description](#Description)
 - [Features](#Features)
 - [Installation](#Installation)
-- [How to run](#Howtorun)
-- [Distinctiveness and Complexity](#DistinctivenessandComplexity)
+- [How to run](#How-to-run)
+- [Distinctiveness and Complexity](#Distinctiveness-and-Complexity)
 - [Files](#Files)
 
 
