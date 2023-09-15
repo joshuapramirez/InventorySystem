@@ -1,9 +1,8 @@
 # Inventory System
-
 Inventory Management System for Businesses/Sellers
 
-## Table of Contents
 
+## Table of Contents
 - [Description](#Description)
 - [Features](#Features)
 - [Installation](#Installation)
@@ -14,6 +13,13 @@ Inventory Management System for Businesses/Sellers
 
 ## Description
 I have developed an inventory management system tailored to support businesses and sellers in meticulously tracking their inventory and sales activities. The user-centric interface offers seamless interaction, enabling effortless updates to inventory and seamless addition of sales transactions. Through intuitive graphical representations, users can visually grasp the performance of their products, aided by dynamic graphs. Additionally, the system streamlines product search and access within the available stock, enhancing operational efficiency.
+
+
+## Video Overview
+[Watch the Video Overview](https://youtu.be/9AFGgIo1nNA)
+
+In this video, I go through the features and functionality of this project.
+
 
 ## Features
 -User Account Creation
@@ -37,7 +43,6 @@ pip install plotly
 2. python manage.py runserver
 
 ## Distinctiveness and Complexity
-
 This project stands out due to its unique approach and intricate design. The primary focus is on real-time manipulation of inventory data within a responsive web application. The application employs modal components to facilitate dynamic data modifications within charts without requiring a page refresh. Additionally, the data is visually represented through graphs, enhancing user comprehension.
 
 The utilization of modals is a recurring theme throughout the project. They serve various purposes, including chart manipulation, search form recommendations, and confirmation dialogs for inventory deletion. This strategic incorporation of modals significantly enhances the user experience. Furthermore, the application's responsiveness to varying screen sizes ensures content remains organized and visually appealing.
