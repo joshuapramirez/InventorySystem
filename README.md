@@ -22,15 +22,15 @@ In this video, I go through the features and functionality of this project.
 
 
 ## Features
--User Account Creation
--Effortless Product Addition
--Streamlined Product Updates
--Efficient Product Deletion
--Interactive Sales Tracking
--Comprehensive Product Insights
--Intelligent Product Search
--Search Suggestions
--Visual Performance Analytics
+- User Account Creation
+- Effortless Product Addition
+- Streamlined Product Updates
+- Efficient Product Deletion
+- Interactive Sales Tracking
+- Comprehensive Product Insights
+- Intelligent Product Search
+- Search Suggestions
+- Visual Performance Analytics
 
 ### Installation
 pip3 install django
