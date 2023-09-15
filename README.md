@@ -55,25 +55,25 @@ Summing up, I believe this project truly shines through its unique attributes, c
 
 
 ## Files
-forms.py - Contains forms for adding products and updating inventory records.
-models.py - Defines the Inventory model, facilitating storage of product data.
-views.py - Implements Python functions for various operations, including adding, updating, deleting, and searching products. It also manages graph creation and modal functionality.
-urls.py -  Manages all application URLs.
-dashboard.html - Presents graphical representations of product performance.
-empty_inventory.html - Informs users of zero products and offers a button to redirect to the product addition form.
-inventory_add.html -  Form for adding new products to the inventory.
-inventory_update.html - Form for updating existing product details.
-inventory_list.html - Main application page displaying a chart with comprehensive product information and manipulation options.
-layout.html - Provides the overall application layout.
-per_product.html - Individual product-specific page.
-login.html - User login page.
-logout.html - Notifies users upon logout with a link to the login page.
-register.html - User account creation page.
-style.css - CSS defining the application's base appearance.
-search_and_delete.css - CCSS handling styles for the search and delete confirmation modals.
-dashboard.js - JavaScript functions responsible for graph rendering.
-delete_confirmation.js - JavaScript facilitating the functionality of the delete confirmation modal.
-inventory_list.js - JavaScript enabling modal interaction, stock quantity updates, and transaction recording.
-search.js - JavaScript powering the search modal and search form.
-admin.py - Facilitates the administration interface for managing application data models.
-settings.py - Contains configuration settings for the Django project. It includes settings for database connections, middleware, templates, authentication, internationalization, time zones, and static files handling.
+- forms.py - Contains forms for adding products and updating inventory records.
+- models.py - Defines the Inventory model, facilitating storage of product data.
+- views.py - Implements Python functions for various operations, including adding, updating, deleting, and searching products. It also manages graph creation and modal functionality.
+- urls.py -  Manages all application URLs.
+- dashboard.html - Presents graphical representations of product performance.
+- empty_inventory.html - Informs users of zero products and offers a button to redirect to the product addition form.
+- inventory_add.html -  Form for adding new products to the inventory.
+- inventory_update.html - Form for updating existing product details.
+- inventory_list.html - Main application page displaying a chart with comprehensive product information and manipulation options.
+- layout.html - Provides the overall application layout.
+- per_product.html - Individual product-specific page.
+- login.html - User login page.
+- logout.html - Notifies users upon logout with a link to the login page.
+- register.html - User account creation page.
+- style.css - CSS defining the application's base appearance.
+- search_and_delete.css - CCSS handling styles for the search and delete confirmation modals.
+- dashboard.js - JavaScript functions responsible for graph rendering.
+- delete_confirmation.js - JavaScript facilitating the functionality of the delete confirmation modal.
+- inventory_list.js - JavaScript enabling modal interaction, stock quantity updates, and transaction recording.
+- search.js - JavaScript powering the search modal and search form.
+- admin.py - Facilitates the administration interface for managing application data models.
+- settings.py - Contains configuration settings for the Django project. It includes settings for database connections, middleware, templates, authentication, internationalization, time zones, and static files handling.
