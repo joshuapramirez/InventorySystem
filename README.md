@@ -15,8 +15,8 @@ Inventory Management System for Businesses/Sellers
 I have developed an inventory management system tailored to support businesses and sellers in meticulously tracking their inventory and sales activities. The user-centric interface offers seamless interaction, enabling effortless updates to inventory and seamless addition of sales transactions. Through intuitive graphical representations, users can visually grasp the performance of their products, aided by dynamic graphs. Additionally, the system streamlines product search and access within the available stock, enhancing operational efficiency.
 
 
-## Video Overview
-[Watch the Video Overview](https://youtu.be/9AFGgIo1nNA)
+## Video Walkthrough
+[Watch the Video Walkthrough](https://youtu.be/9AFGgIo1nNA)
 
 In this video, I go through the features and functionality of this project.
 
